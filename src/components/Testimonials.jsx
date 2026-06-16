@@ -39,7 +39,7 @@ const REVIEWS = [
     date:    'Hace 2 días',
     plan:    'Elite',
     lang:    null,
-    text:    '"Tengo una agencia de marketing y manejamos cuentas publicitarias con más de $50,000 mensuales. Antes de Incripta nos hackearon una cuenta de Meta Ads y perdimos $8,000 en un fin de semana. Desde que activamos el plan Elite no hemos tenido ningún incidente. Totalmente recomendado para cualquier agencia."',
+    text:    '"Tengo una agencia de marketing y manejamos cuentas publicitarias con más de $50,000 mensuales. Antes de Encriptas nos hackearon una cuenta de Meta Ads y perdimos $8,000 en un fin de semana. Desde que activamos el plan Elite no hemos tenido ningún incidente. Totalmente recomendado para cualquier agencia."',
   },
   {
     name:    'Valentina Restrepo',
@@ -47,7 +47,7 @@ const REVIEWS = [
     date:    'Hace 5 días',
     plan:    'Pro',
     lang:    null,
-    text:    '"Soy influencer y tenía mucho miedo de perder mi cuenta de Instagram con 280k seguidores. Incripta me da una tranquilidad que no tenía antes. Ya intentaron hackearme dos veces según las alertas que recibí y las dos veces el sistema bloqueó el intento. Vale cada centavo que pago."',
+    text:    '"Soy influencer y tenía mucho miedo de perder mi cuenta de Instagram con 280k seguidores. Encriptas me da una tranquilidad que no tenía antes. Ya intentaron hackearme dos veces según las alertas que recibí y las dos veces el sistema bloqueó el intento. Vale cada centavo que pago."',
   },
   {
     name:    'Ahmed Al-Rashid',
@@ -55,7 +55,7 @@ const REVIEWS = [
     date:    'Hace 1 semana',
     plan:    'Elite',
     lang:    'Reseña en inglés',
-    text:    '"I manage multiple businesses and my digital security was always a concern. Incripta\'s Elite plan covers all my accounts, advertising platforms and devices. The encryption terminal is impressive and the support team responds within minutes. Best investment I made this year."',
+    text:    '"I manage multiple businesses and my digital security was always a concern. Encriptas\'s Elite plan covers all my accounts, advertising platforms and devices. The encryption terminal is impressive and the support team responds within minutes. Best investment I made this year."',
   },
   {
     name:    'Lucia Fernandez',
@@ -71,7 +71,7 @@ const REVIEWS = [
     date:    'Hace 2 semanas',
     plan:    'Pro',
     lang:    'Reseña en inglés',
-    text:    '"In Nigeria cybercrime is a serious problem. I lost my Facebook business account once and it cost me a lot. With Incripta Pro all my social media and banking apps are protected. The real-time encryption terminal shows exactly what is being secured. Very professional service."',
+    text:    '"In Nigeria cybercrime is a serious problem. I lost my Facebook business account once and it cost me a lot. With Encriptas Pro all my social media and banking apps are protected. The real-time encryption terminal shows exactly what is being secured. Very professional service."',
   },
   {
     name:    'Sofia Andersson',
@@ -79,7 +79,7 @@ const REVIEWS = [
     date:    'Hace 2 semanas',
     plan:    'Elite',
     lang:    'Reseña en alemán',
-    text:    '"Als Unternehmerin verwalte ich sensible Kundendaten täglich. Incripta schützt nicht nur meine sozialen Medien, sondern auch mein CRM-System. Der Kundendienst ist hervorragend und reagiert sofort. Ich empfehle es jedem Unternehmer."',
+    text:    '"Als Unternehmerin verwalte ich sensible Kundendaten täglich. Encriptas schützt nicht nur meine sozialen Medien, sondern auch mein CRM-System. Der Kundendienst ist hervorragend und reagiert sofort. Ich empfehle es jedem Unternehmer."',
   },
   {
     name:    'Diego Paredes',
@@ -87,7 +87,7 @@ const REVIEWS = [
     date:    'Hace 3 semanas',
     plan:    'Pro',
     lang:    null,
-    text:    '"Trabajo en una empresa de importaciones y manejamos datos muy sensibles. Nos recomendaron Incripta y fue la mejor decisión. Lo mejor es la sección de verificación — puedes comprobar en tiempo real que tu número o cuenta está protegida. El soporte por WhatsApp responde rapidísimo, en menos de 10 minutos."',
+    text:    '"Trabajo en una empresa de importaciones y manejamos datos muy sensibles. Nos recomendaron Encriptas y fue la mejor decisión. Lo mejor es la sección de verificación — puedes comprobar en tiempo real que tu número o cuenta está protegida. El soporte por WhatsApp responde rapidísimo, en menos de 10 minutos."',
   },
   {
     name:    'Marie Dupont',
@@ -95,7 +95,7 @@ const REVIEWS = [
     date:    'Hace 1 mes',
     plan:    'Elite',
     lang:    'Reseña en francés',
-    text:    '"En tant que directrice marketing, je gère plusieurs comptes publicitaires avec des budgets importants. Incripta Elite protège tout mon écosystème digital. L\'interface est intuitive et le chiffrement en direct est vraiment impressionnant. Je recommande vivement."',
+    text:    '"En tant que directrice marketing, je gère plusieurs comptes publicitaires avec des budgets importants. Encriptas Elite protège tout mon écosystème digital. L\'interface est intuitive et le chiffrement en direct est vraiment impressionnant. Je recommande vivement."',
   },
   {
     name:    'Hiroshi Tanaka',
@@ -103,7 +103,7 @@ const REVIEWS = [
     date:    'Hace 1 mes',
     plan:    'Pro',
     lang:    'Reseña en inglés',
-    text:    '"I run an e-commerce business and protecting my Google Ads account and customer data is critical. Incripta Pro gave me complete peace of mind. The vulnerability analysis detected 3 weak points I didn\'t know existed. Fixed immediately. Excellent product."',
+    text:    '"I run an e-commerce business and protecting my Google Ads account and customer data is critical. Encriptas Pro gave me complete peace of mind. The vulnerability analysis detected 3 weak points I didn\'t know existed. Fixed immediately. Excellent product."',
   },
 ];
 

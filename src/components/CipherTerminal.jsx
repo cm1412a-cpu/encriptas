@@ -7,7 +7,7 @@ const hex = (n = 16) =>
 
 // Secuencia completa con delays individuales (ms) entre líneas — total ~60s
 const construirSecuencia = (objetivo) => [
-  { text: '> Iniciando protocolo Incripta v3.7...',                         delay: 0    },
+  { text: '> Iniciando protocolo Encriptas v3.7...',                        delay: 0    },
   { text: '> Estableciendo conexión cifrada con servidor central...',        delay: 1500 },
   { text: '> Verificando integridad del sistema... OK',                      delay: 2000 },
   { text: '> Cargando módulos de seguridad neural...',                       delay: 1500 },
@@ -30,7 +30,7 @@ const construirSecuencia = (objetivo) => [
   { text: `> Hash de verificación: SHA-512 → ${hex(16)}...`,                delay: 700  },
   { text: '> Capa 1 verificada: OK',                                         delay: 800  },
   { text: '> [##########          ] 44% Iniciando protocolo de red neural...', delay: 1500 },
-  { text: '> Conectando con nodos de la red distribuida Incripta...',        delay: 1200 },
+  { text: '> Conectando con nodos de la red distribuida Encriptas...',       delay: 1200 },
   { text: '> Nodo 1 [Frankfurt]   → Conectado',                             delay: 800  },
   { text: '> Nodo 2 [São Paulo]   → Conectado',                             delay: 700  },
   { text: '> Nodo 3 [Tokio]       → Conectado',                             delay: 700  },
@@ -182,7 +182,7 @@ export default function CipherTerminal() {
             Prueba Nuestra Protección
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto text-lg">
-            Ingresa un perfil, número o dispositivo y observa cómo Incripta lo protege en tiempo real.
+            Ingresa un perfil, número o dispositivo y observa cómo Encriptas lo protege en tiempo real.
           </p>
         </motion.div>
 
@@ -242,7 +242,7 @@ export default function CipherTerminal() {
                 <span className="w-3 h-3 rounded-full bg-red-500/70" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
                 <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                <span className="ml-3 text-xs text-slate-500 font-mono tracking-wide">incripta — cifrado activo</span>
+                <span className="ml-3 text-xs text-slate-500 font-mono tracking-wide">encriptas — cifrado activo</span>
                 {fase === 'running' && (
                   <span className="ml-auto flex items-center gap-1.5 text-[10px] text-green-400 font-mono">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />EN PROCESO

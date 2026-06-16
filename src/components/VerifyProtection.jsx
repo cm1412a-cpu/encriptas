@@ -159,7 +159,7 @@ export default function VerifyProtection({ records, onGoHome }) {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           className="text-slate-400"
         >
-          Comprueba si un número, cuenta o dispositivo está bajo protección Incripta.
+          Comprueba si un número, cuenta o dispositivo está bajo protección Encriptas.
         </motion.p>
       </div>
 
@@ -229,7 +229,7 @@ export default function VerifyProtection({ records, onGoHome }) {
               <div>
                 <p className="text-3xl font-black" style={{ color: '#00ff88' }}>PROTEGIDO</p>
                 <p className="text-slate-400 text-sm mt-0.5">
-                  Este número/cuenta está protegido por Incripta
+                  Este número/cuenta está protegido por Encriptas
                 </p>
               </div>
             </div>

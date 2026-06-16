@@ -7,7 +7,7 @@ const hex = (n = 12) =>
 const DEMO_TARGET = 'instagram.com/usuario_demo';
 
 const construirSecuencia = () => [
-  { text: '> Iniciando protocolo Incripta v3.7...',                             delay: 0    },
+  { text: '> Iniciando protocolo Encriptas v3.7...',                            delay: 0    },
   { text: '> Estableciendo conexión cifrada con servidor central...',            delay: 800  },
   { text: '> Verificando integridad del sistema... OK',                          delay: 900  },
   { text: `> Identificando objetivo: ${DEMO_TARGET}`,                           delay: 700, objetivo: true },
@@ -162,7 +162,7 @@ export default function HeroTerminal() {
         <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
         <span className="w-3 h-3 rounded-full bg-green-500/70" />
         <span className="ml-3 text-xs text-slate-500 font-mono tracking-wide">
-          incripta — cifrado activo
+          encriptas — cifrado activo
         </span>
         <span className="ml-auto flex items-center gap-1.5 text-[10px] text-green-400 font-mono">
           <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />

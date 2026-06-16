@@ -19,7 +19,7 @@ import './App.css';
 localStorage.removeItem('subscriptionId');
 
 function loadRecords() {
-  try { return JSON.parse(localStorage.getItem('incriptaRecords') || '[]'); }
+  try { return JSON.parse(localStorage.getItem('encriptasRecords') || '[]'); }
   catch { return []; }
 }
 
@@ -49,7 +49,7 @@ function App() {
     if (record) {
       setRecords(prev => {
         const updated = [...prev, { ...record, id }];
-        localStorage.setItem('incriptaRecords', JSON.stringify(updated));
+        localStorage.setItem('encriptasRecords', JSON.stringify(updated));
         return updated;
       });
     }
@@ -102,8 +102,8 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
           <button onClick={goHome} className="flex items-center space-x-3 focus:outline-none">
-            <img src={logo} alt="Incripta" className="w-10 h-10 shadow-lg shadow-indigo-500/20 rounded-xl" />
-            <span className="text-xl font-bold tracking-tight">Incripta</span>
+            <img src={logo} alt="Encriptas" className="w-10 h-10 shadow-lg shadow-indigo-500/20 rounded-xl" />
+            <span className="text-xl font-bold tracking-tight">Encriptas</span>
           </button>
 
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
@@ -282,7 +282,7 @@ function App() {
                       <div>
                         <h2 className="text-4xl font-bold mb-8">¿Quiénes Somos?</h2>
                         <p className="text-xl text-slate-300 leading-relaxed mb-6">
-                          Somos Incripta, pioneros en la convergencia de Inteligencia Artificial Sintética y criptografía avanzada.
+                          Somos Encriptas, pioneros en la convergencia de Inteligencia Artificial Sintética y criptografía avanzada.
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-4">

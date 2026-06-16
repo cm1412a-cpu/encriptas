@@ -6,20 +6,20 @@ import { ChevronDown } from 'lucide-react';
 
 const ITEMS = [
   {
-    q: '¿Qué es Incripta y cómo funciona?',
-    a: `Incripta es una plataforma de cifrado digital de nueva generación que protege tus cuentas, dispositivos y redes sociales usando algoritmos AES-256-GCM y protocolos de seguridad militar.
+    q: '¿Qué es Encriptas y cómo funciona?',
+    a: `Encriptas es una plataforma de cifrado digital de nueva generación que protege tus cuentas, dispositivos y redes sociales usando algoritmos AES-256-GCM y protocolos de seguridad militar.
 
-Cuando te suscribes, nuestro sistema analiza los vectores de vulnerabilidad de tu cuenta o dispositivo y aplica capas de cifrado que hacen tu información indescifrable para terceros. Por ejemplo: si proteges tu WhatsApp con Incripta, aunque alguien intercepte tu conexión WiFi en un café, no podrá leer tus mensajes ni ver tus archivos compartidos.`,
+Cuando te suscribes, nuestro sistema analiza los vectores de vulnerabilidad de tu cuenta o dispositivo y aplica capas de cifrado que hacen tu información indescifrable para terceros. Por ejemplo: si proteges tu WhatsApp con Encriptas, aunque alguien intercepte tu conexión WiFi en un café, no podrá leer tus mensajes ni ver tus archivos compartidos.`,
   },
   {
     q: '¿Realmente pueden cifrar mi WhatsApp o Instagram?',
-    a: `Incripta aplica una capa adicional de protección sobre los protocolos existentes de estas plataformas. WhatsApp ya tiene cifrado de extremo a extremo, pero existen vulnerabilidades en el dispositivo mismo: apps espía, acceso físico al teléfono, backups sin cifrar en Google Drive o iCloud, y sesiones activas en otros dispositivos.
+    a: `Encriptas aplica una capa adicional de protección sobre los protocolos existentes de estas plataformas. WhatsApp ya tiene cifrado de extremo a extremo, pero existen vulnerabilidades en el dispositivo mismo: apps espía, acceso físico al teléfono, backups sin cifrar en Google Drive o iCloud, y sesiones activas en otros dispositivos.
 
-Incripta protege específicamente esas vulnerabilidades. Ejemplo real: si alguien instala un keylogger en tu teléfono para capturar tus contraseñas, nuestro sistema detecta la actividad anómala y blinda el acceso a tus cuentas vinculadas.`,
+Encriptas protege específicamente esas vulnerabilidades. Ejemplo real: si alguien instala un keylogger en tu teléfono para capturar tus contraseñas, nuestro sistema detecta la actividad anómala y blinda el acceso a tus cuentas vinculadas.`,
   },
   {
-    q: '¿Es seguro ingresar mi número o URL en Incripta?',
-    a: `Completamente. Incripta no almacena tu número de teléfono ni tus URLs en texto plano. Toda la información que ingresas es procesada con hash SHA-512, lo que significa que ni siquiera nosotros podemos ver tu dato original una vez procesado.
+    q: '¿Es seguro ingresar mi número o URL en Encriptas?',
+    a: `Completamente. Encriptas no almacena tu número de teléfono ni tus URLs en texto plano. Toda la información que ingresas es procesada con hash SHA-512, lo que significa que ni siquiera nosotros podemos ver tu dato original una vez procesado.
 
 Es similar a cómo funcionan los bancos: ellos no guardan tu contraseña, guardan una versión cifrada irreversible de ella. Si alguien hackea nuestra base de datos, solo encontraría cadenas de caracteres sin sentido.`,
   },
@@ -34,22 +34,22 @@ Plan Pro ($45/6 meses): Para personas con vida digital activa. Por ejemplo, un i
 Plan Elite ($90/año): Para empresas o profesionales con cuentas publicitarias activas. Por ejemplo, una agencia de marketing que maneja Meta Ads con $5,000 de presupuesto activo y no puede permitirse que un hacker tome control de la cuenta.`,
   },
   {
-    q: '¿Qué pasa si me hackean mientras tengo Incripta activo?',
+    q: '¿Qué pasa si me hackean mientras tengo Encriptas activo?',
     a: `Si tienes una suscripción activa y detectamos actividad sospechosa, nuestro sistema envía una alerta inmediata a tu correo y activa protocolos de bloqueo adicionales.
 
-Ejemplo: un cliente con plan Pro notó que alguien intentó acceder a su Facebook desde una IP en Rusia. Nuestro sistema bloqueó el intento y le notificó en menos de 2 minutos. Sin Incripta, ese acceso hubiera pasado desapercibido hasta que ya fuera demasiado tarde.
+Ejemplo: un cliente con plan Pro notó que alguien intentó acceder a su Facebook desde una IP en Rusia. Nuestro sistema bloqueó el intento y le notificó en menos de 2 minutos. Sin Encriptas, ese acceso hubiera pasado desapercibido hasta que ya fuera demasiado tarde.
 
-Importante: Incripta es una capa de protección adicional, no reemplaza buenas prácticas como usar contraseñas fuertes y activar la verificación en dos pasos.`,
+Importante: Encriptas es una capa de protección adicional, no reemplaza buenas prácticas como usar contraseñas fuertes y activar la verificación en dos pasos.`,
   },
   {
     q: '¿Cómo cancelo mi suscripción?',
-    a: `Puedes cancelar en cualquier momento escribiéndonos a soporte@incripta.com con tu correo de registro. Procesamos la cancelación en menos de 24 horas y no te cobramos el siguiente ciclo.
+    a: `Puedes cancelar en cualquier momento escribiéndonos a soporte@encriptas.com con tu correo de registro. Procesamos la cancelación en menos de 24 horas y no te cobramos el siguiente ciclo.
 
 No hay penalidades ni cargos ocultos. Si cancelas a mitad de un período ya pagado, tu protección continúa activa hasta que venza ese período.`,
   },
   {
     q: '¿Funciona para personas fuera de Perú?',
-    a: `Sí, Incripta funciona en cualquier país del mundo. Aceptamos tarjetas de débito y crédito internacionales (Visa, Mastercard, Amex) de cualquier país.
+    a: `Sí, Encriptas funciona en cualquier país del mundo. Aceptamos tarjetas de débito y crédito internacionales (Visa, Mastercard, Amex) de cualquier país.
 
 Tenemos usuarios activos en Colombia, México, Argentina, España, Estados Unidos y más de 20 países. El servicio es exactamente igual sin importar desde dónde accedas.`,
   },

@@ -138,7 +138,7 @@ export default function Footer() {
       <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="max-w-6xl mx-auto px-6 py-4 text-center">
           <p className="text-xs text-slate-500 leading-relaxed">
-            Incripta no almacena datos personales de tus cuentas.
+            Encriptas no almacena datos personales de tus cuentas.
             {' '}El cifrado es procesado de forma segura y encriptada.
           </p>
         </div>
@@ -151,9 +151,9 @@ export default function Footer() {
           {/* Contáctanos */}
           <div>
             <div className="flex items-center gap-2.5 mb-6">
-              <img src={logo} alt="Incripta" className="w-9 h-9 rounded-xl"
+              <img src={logo} alt="Encriptas" className="w-9 h-9 rounded-xl"
                 style={{ boxShadow: '0 0 16px rgba(124,58,237,0.35)' }} />
-              <span className="text-lg font-black text-white tracking-tight">Incripta</span>
+              <span className="text-lg font-black text-white tracking-tight">Encriptas</span>
             </div>
 
             <ColTitle>Contáctanos</ColTitle>
@@ -165,18 +165,18 @@ export default function Footer() {
                   <MessageCircle className="w-4 h-4 text-violet-400 group-hover:text-violet-300 transition-colors" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors">Escríbenos a @incripta</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors">Escríbenos a @encriptas</p>
                   <p className="text-[11px] text-slate-500 mt-0.5">Respuesta en menos de 24 h</p>
                 </div>
               </a>
 
-              <a href="mailto:soporte@incripta.com" className="flex items-start gap-3 group">
+              <a href="mailto:soporte@encriptas.com" className="flex items-start gap-3 group">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.2)' }}>
                   <Mail className="w-4 h-4 text-violet-400 group-hover:text-violet-300 transition-colors" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors">soporte@incripta.com</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-violet-200 transition-colors">soporte@encriptas.com</p>
                   <p className="text-[11px] text-slate-500 mt-0.5">Soporte técnico</p>
                 </div>
               </a>
@@ -263,7 +263,7 @@ export default function Footer() {
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-600">
-            © 2025 Incripta — Todos los derechos reservados.
+            © 2025 Encriptas — Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-1.5">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

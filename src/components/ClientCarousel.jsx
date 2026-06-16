@@ -33,7 +33,7 @@ export default function ClientCarousel() {
           Nuestros Clientes
         </h3>
         <p className="text-xs text-slate-600">
-          Empresas globales que confían en Incripta
+          Empresas globales que confían en Encriptas
         </p>
       </motion.div>
 

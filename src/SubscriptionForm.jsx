@@ -214,7 +214,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
     setError(null);
     window.Culqi.publicKey = import.meta.env.VITE_CULQI_PUBLIC_KEY;
     window.Culqi.settings({
-      title:       'Incripta',
+      title:       'Encriptas',
       currency:    'USD',
       description: `Plan ${selectedPlan.name} — ${selectedPlan.label}`,
       amount:      selectedPlan.amount,
@@ -770,7 +770,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 <h2 className="text-lg font-black bg-gradient-to-r from-violet-300 to-emerald-300 bg-clip-text text-transparent mb-0.5">
                   Proteccion Neural Activa
                 </h2>
-                <p className="text-[11px] text-slate-500 mb-1.5">Tu información está blindada por Incripta</p>
+                <p className="text-[11px] text-slate-500 mb-1.5">Tu información está blindada por Encriptas</p>
                 <span className="px-3 py-0.5 rounded-full text-[10px] font-black tracking-[0.2em]"
                   style={{ background: 'rgba(0,255,136,0.1)', border: '1px solid rgba(0,255,136,0.3)', color: '#00ff88' }}>
                   ACTIVO
@@ -789,11 +789,11 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 <div className="w-2 h-2 rounded-full" style={{ background: '#ef4444' }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: '#eab308' }} />
                 <div className="w-2 h-2 rounded-full" style={{ background: '#22c55e' }} />
-                <span className="ml-2 text-[9px] text-slate-600">incripta — cifrado completado</span>
+                <span className="ml-2 text-[9px] text-slate-600">encriptas — cifrado completado</span>
               </div>
               <div className="p-3 space-y-0.5">
                 {[
-                  { text: '> Retomando protocolo Incripta...',                color: '#475569', delay: 0.6  },
+                  { text: '> Retomando protocolo Encriptas...',                color: '#475569', delay: 0.6  },
                   { text: '> [####################] 100% Cifrado completado', color: '#00ff88', delay: 0.75 },
                   { text: `> Clave maestra generada: ${activationKey}`,        color: '#a78bfa', delay: 0.9  },
                   { text: `> Titular verificado:`,  color: '#475569', delay: 1.05, bold: `${nombre} ${apellido}`.trim() || 'N/A', boldColor: '#ffffff' },
@@ -880,7 +880,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 {telPago && (<>, su número{' '}<span style={{ color: '#a78bfa', fontWeight: 700 }}>{codPago} {telPago}</span></>)}
                 , sus billeteras digitales y apps bancarias móviles están{' '}
                 <span style={{ color: '#00ff88', fontWeight: 700 }}>completamente seguras</span>{' '}
-                y protegidas por Incripta.
+                y protegidas por Encriptas.
               </p>
             </motion.div>
 

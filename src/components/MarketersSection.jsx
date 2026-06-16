@@ -143,7 +143,7 @@ export default function MarketersSection({ onScrollToForm }) {
         ))}
       </div>
 
-      {/* ── Bloque 2: Lo que protege Incripta ───────────────────────────── */}
+      {/* ── Bloque 2: Lo que protege Encriptas ───────────────────────────── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +152,7 @@ export default function MarketersSection({ onScrollToForm }) {
         className="text-center mb-8"
       >
         <p className="text-xs font-bold uppercase tracking-widest text-violet-400 mb-2">
-          Protección Incripta Elite cubre todo esto
+          Protección Encriptas Elite cubre todo esto
         </p>
         <h3 className="text-2xl font-bold text-white">Lo que blindamos por ti</h3>
       </motion.div>

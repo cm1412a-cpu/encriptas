@@ -44,7 +44,7 @@ function buildSequence(ud) {
   const RE = '#ff6b6b';   // red (alert)
 
   const lines = [
-    { text: '> Iniciando protocolo Incripta v3.7...',    delay: 0,   color: G  },
+    { text: '> Iniciando protocolo Encriptas v3.7...',   delay: 0,   color: G  },
     { text: '> Estableciendo conexión cifrada...',        delay: 700, color: G  },
     { text: '> Verificando integridad del sistema... OK', delay: 800, color: OK },
   ];
@@ -219,7 +219,7 @@ export default function AnalysisTerminal({ userData, onScrollToForm }) {
         <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
         <span className="w-3 h-3 rounded-full bg-green-500/70" />
         <span className="ml-3 text-xs text-slate-500 font-mono tracking-wide">
-          incripta — análisis de vulnerabilidad
+          encriptas — análisis de vulnerabilidad
         </span>
         <span className="ml-auto flex items-center gap-1.5 text-[10px] font-mono"
           style={{ color: statusClr }}>
