@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#05030d] text-white selection:bg-purple-500/30;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 border border-white/10 backdrop-blur-xl;
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 10px rgba(139, 92, 246, 0.7),
+      0 0 30px rgba(124, 58, 237, 0.4),
+      0 0 60px rgba(124, 58, 237, 0.2);
+  }
+
+  .neon-border {
+    @apply border-violet-500/50;
+    box-shadow: 0 0 20px rgba(124,58,237,0.25), inset 0 0 20px rgba(124,58,237,0.05);
+  }
+
+  /* Texto neón verde del terminal */
+  .neon-green {
+    color: #00ff88;
+    text-shadow: 0 0 8px #00ff88, 0 0 24px rgba(0,255,136,0.4);
+  }
+
+  /* Botón con barrido de brillo (shimmer) */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -110%;
+    width: 60%; height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.18),
+      transparent
+    );
+    animation: shimmer 2.8s infinite;
+  }
+
+  /* Card con efecto flotante 3D */
+  .card-float {
+    animation: float-3d 7s ease-in-out infinite;
+  }
+}
+
+/* ─── Animaciones globales ─── */
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.65; transform: scale(1.08); }
+}
+.animate-pulse-slow { animation: pulse-slow 8s infinite ease-in-out; }
+
+/* Cursor parpadeante del terminal */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.terminal-cursor { animation: blink 1s step-end infinite; }
+
+/* Carrusel infinito */
+@keyframes scroll-infinite {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.carousel-track { width: max-content; animation: scroll-infinite 38s linear infinite; }
+.carousel-track:hover { animation-play-state: paused; }
+
+/* Scrollbar terminal */
+.terminal-scroll::-webkit-scrollbar        { width: 3px; }
+.terminal-scroll::-webkit-scrollbar-track  { background: transparent; }
+.terminal-scroll::-webkit-scrollbar-thumb  { background: rgba(0,255,136,0.18); border-radius: 2px; }
+
+/* Shimmer horizontal */
+@keyframes shimmer {
+  0%   { left: -110%; }
+  100% { left: 110%; }
+}
+
+/* Flotación 3D suave */
+@keyframes float-3d {
+  0%, 100% { transform: perspective(1200px) translateY(0) rotateX(0deg) rotateY(0deg); }
+  33%       { transform: perspective(1200px) translateY(-6px) rotateX(1deg) rotateY(-0.5deg); }
+  66%       { transform: perspective(1200px) translateY(-3px) rotateX(-0.5deg) rotateY(0.5deg); }
+}
+
+/* Pulso de brillo para elementos activos */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2); }
+  50%       { box-shadow: 0 0 30px rgba(139,92,246,0.8), 0 0 80px rgba(124,58,237,0.35); }
+}
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+/* Barrido de línea de escaneo */
+@keyframes scan-sweep {
+  0%   { top: 0%;   opacity: 0.8; }
+  90%  { top: 100%; opacity: 0.4; }
+  100% { top: 100%; opacity: 0; }
+}
+.scan-line {
+  position: absolute;
+  left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, #06b6d4, transparent);
+  animation: scan-sweep 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Borde animado con gradiente para cards premium */
+@keyframes border-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-border-anim {
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4, #7c3aed);
+  background-size: 300% 300%;
+  animation: border-spin 4s ease infinite;
+}
+
+/* ─── Hero section animations ─── */
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40%       { transform: translateY(-18px) scale(1.02); }
+  70%       { transform: translateY(-8px) scale(0.98); }
+}
+
+@keyframes hero-matrix-fall {
+  from { transform: translateY(-20vh); }
+  to   { transform: translateY(130vh); }
+}
+
+@keyframes hero-scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%       { transform: translateY(9px); opacity: 0.3; }
+}
+.hero-scroll-bounce { animation: hero-scroll-bounce 1.6s ease-in-out infinite; }
+
+@keyframes nn-fade {
+  from { opacity: 0.1; }
+  to   { opacity: 0.55; }
+}
+
+@keyframes nn-node-pulse {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
