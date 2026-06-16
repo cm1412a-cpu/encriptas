@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Smartphone, MessageCircle, Mail, Share2, BarChart2, Shield, Check, Lock } from 'lucide-react';
 
@@ -166,12 +165,13 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
   // Ref para evitar stale closures en el callback global
   const procesarTokenRef = useRef();
   procesarTokenRef.current = async () => {
-    if (window.Culqi.token) {
+    if (window.Culqi?.token) {
       const token = window.Culqi.token.id;
       window.Culqi.close();
       await enviarCargo(token);
-    } else if (window.Culqi.error) {
-      setError(window.Culqi.error.user_message || 'Error en el pago');
+    } else if (window.Culqi?.error) {
+      const msg = window.Culqi.error?.user_message;
+      setError(typeof msg === 'string' ? msg : 'Error en el pago. Intenta de nuevo.');
       setLoading(false);
     }
   };
@@ -253,48 +253,62 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
     }
   };
 
-  // Llamar backend con el token capturado
+  // Llamar serverless function con el token capturado por Culqi
   const enviarCargo = async (token) => {
     setLoading(true); setError(null);
     try {
-      const { data } = await axios.post('/api/culqi-charge', {
-        token,
-        email,
-        amount:   selectedPlan.amount,
-        currency: 'USD',
-        nombre:   `${nombre} ${apellido}`.trim(),
+      const res = await fetch('/api/culqi-charge', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+          email,
+          amount:   selectedPlan.amount,
+          currency: 'USD',
+          nombre:   `${nombre} ${apellido}`.trim(),
+        }),
       });
 
-      if (data.success) {
-        const chars = 'abcdef0123456789';
-        const key   = 'nv-' + Array.from({ length: 32 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-        const ahora   = new Date();
-        const renovar = new Date(ahora.getTime() + 30 * 24 * 60 * 60 * 1000);
-        const fmt = d =>
-          d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
-          + ' ' + d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      let data;
+      try { data = await res.json(); }
+      catch { throw new Error('Error de conexión con el servidor de pagos'); }
 
-        const allChips = selectedType === 'social'
-          ? (CHIPS_MAP.social[socialTab] || [])
-          : (CHIPS_MAP[selectedType] || []);
-        const coberturaEmail = activeChips.length > 0 ? activeChips : allChips;
-        const datoEmail = getDatoProtegido();
+      if (!res.ok || !data.success) {
+        throw new Error(typeof data?.error === 'string' ? data.error : 'Error procesando el pago');
+      }
 
-        setPaymentIntentId(data.chargeId);
-        setActivationKey(key);
-        setFechaActivacion(fmt(ahora));
-        setFechaRenovacion(fmt(renovar));
-        setRegistroActivo({
-          searchKey:      datoEmail,
-          email,
-          protectionType: PROTECTION_CARDS.find(c => c.id === selectedType)?.title || selectedType,
-          activationDate: fmt(ahora),
-          coverage:       coberturaEmail,
-        });
-        setExito(true);
+      const chars = 'abcdef0123456789';
+      const key   = 'nv-' + Array.from({ length: 32 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+      const ahora   = new Date();
+      const renovar = new Date(ahora.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const fmt = d =>
+        d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        + ' ' + d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
-        // Correo de confirmación — fire and forget
-        axios.post('/api/send-confirmation', {
+      const allChips = selectedType === 'social'
+        ? (CHIPS_MAP.social[socialTab] || [])
+        : (CHIPS_MAP[selectedType] || []);
+      const coberturaEmail = activeChips.length > 0 ? activeChips : allChips;
+      const datoEmail = getDatoProtegido();
+
+      setPaymentIntentId(data.chargeId);
+      setActivationKey(key);
+      setFechaActivacion(fmt(ahora));
+      setFechaRenovacion(fmt(renovar));
+      setRegistroActivo({
+        searchKey:      datoEmail,
+        email,
+        protectionType: PROTECTION_CARDS.find(c => c.id === selectedType)?.title || selectedType,
+        activationDate: fmt(ahora),
+        coverage:       coberturaEmail,
+      });
+      setExito(true);
+
+      // Correo de confirmación — fire and forget
+      fetch('/api/send-confirmation', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           email,
           paymentIntentId:  data.chargeId,
           protectionType:   PROTECTION_CARDS.find(c => c.id === selectedType)?.title || selectedType,
@@ -303,10 +317,12 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
           activationKey:    key,
           activationDate:   fmt(ahora),
           renewalDate:      fmt(renovar),
-        }).catch(() => {});
-      }
+        }),
+      }).catch(() => {});
+
     } catch (err) {
-      setError(err.response?.data?.error || 'Error procesando el pago. Inténtalo de nuevo.');
+      console.error('Pago error:', err);
+      setError(typeof err.message === 'string' ? err.message : 'Error procesando el pago. Inténtalo de nuevo.');
     }
     setLoading(false);
   };
