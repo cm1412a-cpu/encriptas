@@ -176,7 +176,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
     }
   };
 
-  // Registrar callback global de Culqi
+  // Registrar callback global de Culqi (se sobreescribe justo antes de open() también)
   useEffect(() => {
     window.culqi = () => procesarTokenRef.current();
     return () => { delete window.culqi; };
@@ -213,24 +213,44 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
   };
   const irPaso3    = () => { clearInterval(msgRef.current); setError(null); setPaso(3); };
 
-  // Abrir modal de Culqi
+  // Lógica real de apertura de Culqi — siempre dentro de try/catch
+  const iniciarPago = () => {
+    try {
+      if (!window.Culqi) throw new Error('Culqi no está cargado');
+      // Garantizar callback registrado justo antes de open()
+      window.culqi = () => procesarTokenRef.current();
+      window.Culqi.publicKey = import.meta.env.VITE_CULQI_PUBLIC_KEY;
+      window.Culqi.settings({
+        title:       'Encriptas',
+        currency:    'USD',
+        description: `Plan ${selectedPlan.name} — ${selectedPlan.label}`,
+        amount:      selectedPlan.amount || 1000,
+      });
+      window.Culqi.options({
+        lang: 'es',
+        modal: true,
+        paymentMethods: { tarjeta: true, yape: false, bancaMovil: false, agente: false, cuotealo: false },
+      });
+      window.Culqi.open();
+    } catch (err) {
+      console.error('Error Culqi:', err);
+      setError('Error al procesar el pago: ' + err.message);
+    }
+  };
+
+  // Abrir modal de Culqi — carga el script dinámicamente si no llegó a tiempo
   const handlePago = (e) => {
     e.preventDefault();
-    if (!window.Culqi) { setError('Procesador de pago no disponible. Recarga la página.'); return; }
     setError(null);
-    window.Culqi.publicKey = import.meta.env.VITE_CULQI_PUBLIC_KEY;
-    window.Culqi.settings({
-      title:       'Encriptas',
-      currency:    'USD',
-      description: `Plan ${selectedPlan.name} — ${selectedPlan.label}`,
-      amount:      selectedPlan.amount,
-    });
-    window.Culqi.options({
-      lang: 'es',
-      modal: true,
-      paymentMethods: { tarjeta: true, yape: false, bancaMovil: false, agente: false, cuotealo: false },
-    });
-    window.Culqi.open();
+    if (typeof window.Culqi === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.culqi.com/js/v4';
+      script.onload = () => { setCulqiListo(true); iniciarPago(); };
+      script.onerror = () => setError('No se pudo cargar el procesador de pago. Verifica tu conexión.');
+      document.head.appendChild(script);
+    } else {
+      iniciarPago();
+    }
   };
 
   // Llamar backend con el token capturado
