@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, ChevronDown, BarChart2, Building2, Award, Star } from 'lucide-react';
 import SubscriptionForm from './SubscriptionForm';
@@ -17,6 +17,27 @@ import logo from './assets/logo.svg';
 import './App.css';
 
 localStorage.removeItem('subscriptionId');
+
+class ErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(error) { return { error }; }
+  componentDidCatch(error, info) { console.error('Encriptas error:', error, info); }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ minHeight: '100vh', background: '#0a0a1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: 'sans-serif', padding: '2rem', textAlign: 'center' }}>
+          <p style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔒</p>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Encriptas</h1>
+          <p style={{ color: '#94a3b8', marginBottom: '1.5rem' }}>Ocurrió un error inesperado. Por favor recarga la página.</p>
+          <button onClick={() => window.location.reload()} style={{ padding: '0.75rem 2rem', borderRadius: '9999px', background: '#7c3aed', color: '#fff', border: 'none', cursor: 'pointer', fontWeight: 700 }}>
+            Recargar
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function loadRecords() {
   try { return JSON.parse(localStorage.getItem('encriptasRecords') || '[]'); }
@@ -95,6 +116,7 @@ function App() {
   };
 
   return (
+    <ErrorBoundary>
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-indigo-500/30 overflow-x-hidden">
 
       {/* ─── Navbar ─────────────────────────────────────────────────── */}
@@ -352,6 +374,7 @@ function App() {
       <div className="fixed top-1/2 left-0 w-[400px] h-[400px] rounded-full -z-10 animate-pulse-slow"
         style={{ background: 'radial-gradient(circle,rgba(6,182,212,0.07) 0%,transparent 70%)', filter: 'blur(100px)', animationDelay: '4s' }} />
     </div>
+    </ErrorBoundary>
   );
 }
 

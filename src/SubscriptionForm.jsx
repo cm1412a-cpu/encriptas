@@ -149,6 +149,12 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
   const scanRef = useRef(null);
   const msgRef  = useRef(null);
 
+  // Verificar variable de entorno de Culqi
+  useEffect(() => {
+    const culqiKey = import.meta.env.VITE_CULQI_PUBLIC_KEY;
+    if (!culqiKey) console.error('Culqi key not found — define VITE_CULQI_PUBLIC_KEY en Vercel');
+  }, []);
+
   // Detectar cuando Culqi está disponible
   useEffect(() => {
     const check = setInterval(() => {
