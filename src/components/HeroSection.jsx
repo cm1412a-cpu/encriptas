@@ -191,7 +191,7 @@ export default function HeroSection({ onScrollToForm }) {
       {/* ── CAPA 1: Imagen de fondo cinematográfica ── */}
       <div className="absolute inset-0" style={{
         zIndex: 1,
-        backgroundImage: "url('/hero-bg.png')",
+        backgroundImage: "url('/hero-bg.webp')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
