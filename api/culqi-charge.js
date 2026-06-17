@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { token, email, amount, currency, nombre } = req.body || {};
+  const { token, email, amount, currency, nombre, apellido } = req.body || {};
 
   if (!token || !email) {
     return res.status(400).json({ error: 'token y email requeridos' });
@@ -27,7 +27,15 @@ export default async function handler(req, res) {
         email,
         source_id:     token,
         description:   'Encriptas - Proteccion neural',
-        metadata:      { nombre: nombre || '' },
+        metadata:      { nombre: nombre || '', apellido: apellido || '' },
+        antifraud_details: {
+          first_name:   nombre   || 'N/A',
+          last_name:    apellido || 'N/A',
+          address:      'N/A',
+          address_city: 'N/A',
+          country_code: 'PE',
+          phone_number: '000000000',
+        },
       }),
     });
 

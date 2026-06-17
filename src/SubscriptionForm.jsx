@@ -265,7 +265,8 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
           email,
           amount:   selectedPlan.amount,
           currency: 'USD',
-          nombre:   `${nombre} ${apellido}`.trim(),
+          nombre,
+          apellido,
         }),
       });
 
