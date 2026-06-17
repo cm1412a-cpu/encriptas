@@ -197,3 +197,12 @@
   from { opacity: 0.3; }
   to   { opacity: 1; }
 }
+
+/* Llama digital — partículas que suben con wiggle y se desvanecen */
+@keyframes flame-rise {
+  0%   { transform: translateY(0)     translateX(0)    scale(1.0);  opacity: 0;   }
+  8%   { opacity: 1; }
+  35%  { transform: translateY(-28vh) translateX(7px)  scale(0.88); opacity: 0.95; }
+  65%  { transform: translateY(-54vh) translateX(-5px) scale(0.68); opacity: 0.55; }
+  100% { transform: translateY(-80vh) translateX(3px)  scale(0.30); opacity: 0;   }
+}

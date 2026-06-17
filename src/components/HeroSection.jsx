@@ -14,20 +14,56 @@ const MAT_COLS = Array.from({ length: 20 }, (_, i) => ({
   op: (0.45 + (i % 3) * 0.12).toFixed(2),
 }));
 
-const PARTS = Array.from({ length: 14 }, (_, i) => ({
+// ─── Llama digital — 4 grupos de partículas criptográficas ──────────
+const FLAME_TEXTS = [
+  '0x7f','AES','SHA','01','∑','IV','0b','TLS',
+  'HASH','ECDH','256','GCM','HMAC','HKDF',
+  '4096','SIG','Kyber','VAULT','P2P','XOR',
+  'RSA','ECC','OTP','ZKP',
+];
+
+// Cyan — base más ancha, zona baja
+const FLAME_CYAN = Array.from({ length: 13 }, (_, i) => ({
   id: i,
-  text: [
-    '0x7f3a9c', 'AES-256', 'SHA-512', 'RSA-4096',
-    'TLS 1.3', 'ECDH', 'HKDF', 'AES-GCM',
-    'IV=rand()', 'HASH:', 'HMAC', 'VAULT',
-    '0b1101', 'Kyber',
-  ][i],
-  left: `${5 + ((i * 93) / 13) | 0}%`,
-  top:  `${12 + ((i * 77) % 78)}%`,
-  dur:  `${(6 + (i * 0.8) % 5).toFixed(1)}s`,
-  del:  `${((i * 0.6) % 3.5).toFixed(1)}s`,
+  text: FLAME_TEXTS[i % FLAME_TEXTS.length],
+  left: `${25 + ((i * 19) % 50)}%`,
+  top:  `${82 + (i % 4) * 4}%`,
+  dur:  `${(2.0 + (i * 0.28) % 1.6).toFixed(1)}s`,
+  del:  `${((i * 0.62) % 3.5).toFixed(1)}s`,
+  fs:   `${11 + (i % 4)}px`,
+}));
+
+// Naranja — zona media-baja
+const FLAME_ORANGE = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  text: FLAME_TEXTS[(i + 5) % FLAME_TEXTS.length],
+  left: `${30 + ((i * 21) % 40)}%`,
+  top:  `${64 + (i % 4) * 5}%`,
+  dur:  `${(2.4 + (i * 0.33) % 1.8).toFixed(1)}s`,
+  del:  `${((i * 0.58) % 3.2).toFixed(1)}s`,
   fs:   `${10 + (i % 3)}px`,
-  op:   (0.12 + (i % 5) * 0.06).toFixed(2),
+}));
+
+// Amarillo — zona media-alta
+const FLAME_YELLOW = Array.from({ length: 8 }, (_, i) => ({
+  id: i,
+  text: FLAME_TEXTS[(i + 10) % FLAME_TEXTS.length],
+  left: `${35 + ((i * 18) % 30)}%`,
+  top:  `${46 + (i % 3) * 6}%`,
+  dur:  `${(2.8 + (i * 0.38) % 2.0).toFixed(1)}s`,
+  del:  `${((i * 0.71) % 3.0).toFixed(1)}s`,
+  fs:   `${9 + (i % 3)}px`,
+}));
+
+// Rojo neón — puntas, zona más alta y estrecha
+const FLAME_RED = Array.from({ length: 6 }, (_, i) => ({
+  id: i,
+  text: FLAME_TEXTS[(i + 15) % FLAME_TEXTS.length],
+  left: `${40 + ((i * 17) % 20)}%`,
+  top:  `${28 + (i % 3) * 7}%`,
+  dur:  `${(3.2 + (i * 0.4) % 2.2).toFixed(1)}s`,
+  del:  `${((i * 0.8) % 3.8).toFixed(1)}s`,
+  fs:   `${9 + (i % 2)}px`,
 }));
 
 const NN_N = [
@@ -43,23 +79,43 @@ const NN_L = [
 // ─── Slide background components ─────────────────────────────────────
 
 function SlideParticles() {
+  const renderFlame = (particles, color, shadowColor) =>
+    particles.map(p => (
+      <span
+        key={p.id}
+        className="absolute font-mono select-none pointer-events-none"
+        style={{
+          left: p.left, top: p.top, fontSize: p.fs,
+          color,
+          textShadow: `0 0 6px ${color}, 0 0 18px ${shadowColor}`,
+          animation: `flame-rise ${p.dur} ${p.del} ease-in-out infinite`,
+          willChange: 'transform, opacity',
+        }}
+      >
+        {p.text}
+      </span>
+    ));
+
   return (
     <div
       className="absolute inset-0"
-      style={{ background: 'radial-gradient(ellipse at 40% 40%, #0d1128 0%, #0a0a1a 70%)' }}
+      style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(0,25,45,0.85) 0%, #0a0a1a 55%)' }}
     >
-      {PARTS.map(p => (
-        <span
-          key={p.id}
-          className="absolute font-mono text-green-400 select-none pointer-events-none"
-          style={{
-            left: p.left, top: p.top, fontSize: p.fs, opacity: p.op,
-            animation: `hero-float ${p.dur} ${p.del} ease-in-out infinite`,
-          }}
-        >
-          {p.text}
-        </span>
-      ))}
+      {/* Resplandor de la base de la llama */}
+      <div
+        className="absolute bottom-0 left-1/2 pointer-events-none"
+        style={{
+          transform: 'translateX(-50%)',
+          width: '55%', height: '35%',
+          background: 'radial-gradient(ellipse at 50% 100%, rgba(0,212,255,0.18) 0%, rgba(255,107,53,0.06) 50%, transparent 70%)',
+          filter: 'blur(24px)',
+        }}
+      />
+
+      {renderFlame(FLAME_CYAN,   '#00d4ff', 'rgba(0,212,255,0.65)')}
+      {renderFlame(FLAME_ORANGE, '#ff6b35', 'rgba(255,107,53,0.65)')}
+      {renderFlame(FLAME_YELLOW, '#ffb800', 'rgba(255,184,0,0.55)')}
+      {renderFlame(FLAME_RED,    '#ff2d55', 'rgba(255,45,85,0.55)')}
     </div>
   );
 }
