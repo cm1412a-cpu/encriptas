@@ -198,11 +198,40 @@
   to   { opacity: 1; }
 }
 
-/* Llama digital — partículas que suben con wiggle y se desvanecen */
+/* Llama digital — keyframe legacy (ya no se usa, reemplazado por canvas) */
 @keyframes flame-rise {
   0%   { transform: translateY(0)     translateX(0)    scale(1.0);  opacity: 0;   }
   8%   { opacity: 1; }
   35%  { transform: translateY(-28vh) translateX(7px)  scale(0.88); opacity: 0.95; }
   65%  { transform: translateY(-54vh) translateX(-5px) scale(0.68); opacity: 0.55; }
   100% { transform: translateY(-80vh) translateX(3px)  scale(0.30); opacity: 0;   }
+}
+
+/* ─── Galaxy animations ─── */
+
+/* Estrellas pequeñas/medianas: parpadeo suave de opacidad + escala mínima */
+@keyframes star-twinkle {
+  0%   { opacity: 0.1; transform: scale(0.8); }
+  100% { opacity: 0.85; transform: scale(1.3); }
+}
+
+/* Estrellas grandes: parpadeo con intensidad */
+@keyframes star-glow {
+  0%   { opacity: 0.25; }
+  100% { opacity: 1.0; }
+}
+
+/* Nebulosa: rotación lenta 1 vuelta / 30s con pulsado de opacidad */
+@keyframes nebula-rotate {
+  0%   { transform: scale(1.00) rotate(0deg);   opacity: 0.28; }
+  25%  { transform: scale(1.07) rotate(90deg);  opacity: 0.42; }
+  50%  { transform: scale(1.00) rotate(180deg); opacity: 0.32; }
+  75%  { transform: scale(1.05) rotate(270deg); opacity: 0.44; }
+  100% { transform: scale(1.00) rotate(360deg); opacity: 0.28; }
+}
+
+/* Nebulosa central: respiración (escala + opacidad) */
+@keyframes nebula-breathe {
+  0%, 100% { transform: scale(1.00); opacity: 0.16; }
+  50%       { transform: scale(1.22); opacity: 0.34; }
 }
