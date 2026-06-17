@@ -24,105 +24,9 @@ const NN_L = [
   [8, 5], [5, 4], [4, 1], [7, 3], [1, 5], [0, 4],
 ];
 
-// ─── Galaxy stars — deterministic positions, 3 depth layers ──────────────────
-// Layer 1: small/fast  (80 stars)
-const STARS_S = Array.from({ length: 80 }, (_, i) => ({
-  id:  i,
-  l:   `${((i * 73.1 + 11.7) % 100).toFixed(2)}%`,
-  t:   `${((i * 53.7 + 7.3)  % 100).toFixed(2)}%`,
-  dur: `${(2.2 + (i * 0.37) % 2.5).toFixed(1)}s`,
-  del: `${((i * 0.61) % 4.2).toFixed(1)}s`,
-}));
-
-// Layer 2: medium, some colored  (50 stars)
-const STARS_M = Array.from({ length: 50 }, (_, i) => ({
-  id:    i,
-  l:     `${((i * 61.3 + 23.1) % 100).toFixed(2)}%`,
-  t:     `${((i * 41.7 + 15.9) % 100).toFixed(2)}%`,
-  dur:   `${(3.5 + (i * 0.51) % 3.5).toFixed(1)}s`,
-  del:   `${((i * 0.79) % 5.3).toFixed(1)}s`,
-  color: i % 5 === 0 ? '#b44fff' : i % 7 === 0 ? '#00d4ff' : '#ffffff',
-}));
-
-// Layer 3: large, glowing  (25 stars)
-const STARS_L = Array.from({ length: 25 }, (_, i) => ({
-  id:    i,
-  l:     `${((i * 83.7 + 5.1)  % 100).toFixed(2)}%`,
-  t:     `${((i * 29.3 + 31.3) % 100).toFixed(2)}%`,
-  dur:   `${(5.5 + (i * 0.7) % 5).toFixed(1)}s`,
-  del:   `${((i * 1.13) % 6.5).toFixed(1)}s`,
-  color: i % 3 === 0 ? '#00d4ff' : i % 3 === 1 ? '#b44fff' : '#ffffff',
-}));
-
-// ─── CAPA 1: Galaxy background ────────────────────────────────────────────────
-function GalaxyBackground() {
-  return (
-    <div className="absolute inset-0" style={{ background: '#030008' }}>
-
-      {/* Nebula 1 — purple, slow clockwise rotation */}
-      <div className="absolute pointer-events-none" style={{
-        width: '65%', height: '70%',
-        left: '5%', top: '-20%',
-        background: 'radial-gradient(ellipse at center, rgba(74,0,128,0.55) 0%, rgba(30,0,60,0.2) 55%, transparent 72%)',
-        filter: 'blur(55px)',
-        animation: 'nebula-rotate 30s linear infinite',
-        transformOrigin: 'center center',
-      }} />
-
-      {/* Nebula 2 — deep blue, counter-clockwise */}
-      <div className="absolute pointer-events-none" style={{
-        width: '60%', height: '60%',
-        right: '-12%', bottom: '-15%',
-        background: 'radial-gradient(ellipse at center, rgba(0,13,74,0.65) 0%, rgba(0,5,40,0.25) 55%, transparent 72%)',
-        filter: 'blur(65px)',
-        animation: 'nebula-rotate 40s linear infinite reverse',
-        transformOrigin: 'center center',
-      }} />
-
-      {/* Nebula 3 — accent center, breathing */}
-      <div className="absolute pointer-events-none" style={{
-        width: '40%', height: '45%',
-        left: '35%', top: '28%',
-        background: 'radial-gradient(ellipse at center, rgba(74,0,128,0.18) 0%, transparent 68%)',
-        filter: 'blur(45px)',
-        animation: 'nebula-breathe 20s ease-in-out infinite',
-        transformOrigin: 'center center',
-      }} />
-
-      {/* Stars layer 1 — small, fast blink */}
-      {STARS_S.map(s => (
-        <div key={`ss${s.id}`} className="absolute rounded-full pointer-events-none"
-          style={{ left: s.l, top: s.t, width: '1px', height: '1px', background: '#fff',
-            animation: `star-twinkle ${s.dur} ${s.del} ease-in-out infinite alternate` }}
-        />
-      ))}
-
-      {/* Stars layer 2 — medium, colored */}
-      {STARS_M.map(s => (
-        <div key={`sm${s.id}`} className="absolute rounded-full pointer-events-none"
-          style={{ left: s.l, top: s.t, width: '1.5px', height: '1.5px', background: s.color,
-            animation: `star-twinkle ${s.dur} ${s.del} ease-in-out infinite alternate` }}
-        />
-      ))}
-
-      {/* Stars layer 3 — large, glowing */}
-      {STARS_L.map(s => (
-        <div key={`sl${s.id}`} className="absolute rounded-full pointer-events-none"
-          style={{ left: s.l, top: s.t, width: '2px', height: '2px', background: s.color,
-            boxShadow: `0 0 4px ${s.color}, 0 0 10px ${s.color}`,
-            animation: `star-glow ${s.dur} ${s.del} ease-in-out infinite alternate` }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// ─── CAPA 2: Flame canvas (requestAnimationFrame) ─────────────────────────────
-function FlameCanvas({ hovered }) {
+// ─── Partículas cyan sutiles (canvas) ────────────────────────────────────────
+function DustCanvas() {
   const canvasRef = useRef(null);
-  const hovRef    = useRef(false);
-
-  useEffect(() => { hovRef.current = hovered; }, [hovered]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -148,70 +52,55 @@ function FlameCanvas({ hovered }) {
       window.addEventListener('resize', resize);
     }
 
-    // Color transition: 0 = bottom (cyan) → 1 = top (red)
-    const flameColor = (t) => {
-      const c = Math.min(1, Math.max(0, t));
-      if (c < 0.33) {
-        const s = c / 0.33;
-        return `rgb(${Math.round(s * 255)},${Math.round(212 - s * 105)},${Math.round(255 - s * 202)})`;
-      }
-      if (c < 0.66) {
-        const s = (c - 0.33) / 0.33;
-        return `rgb(255,${Math.round(107 + s * 77)},${Math.round(53 - s * 53)})`;
-      }
-      const s = (c - 0.66) / 0.34;
-      return `rgb(255,${Math.round(184 - s * 139)},${Math.round(s * 85)})`;
-    };
-
     const mk = () => ({
-      x:   canvas.width * (0.18 + Math.random() * 0.64),
-      y:   canvas.height + 8,
-      vx:  (Math.random() - 0.5) * 0.9,
-      vy: -(1.4 + Math.random() * 2.2),
-      sz:   2 + Math.random() * 3.5,
+      x:    Math.random() * canvas.width,
+      y:    canvas.height + 5,
+      vx:   (Math.random() - 0.5) * 0.28,
+      vy:  -(0.22 + Math.random() * 0.42),
+      sz:   1 + Math.random() * 2,
       sin:  Math.random() * Math.PI * 2,
+      base: 0.3 + Math.random() * 0.5,
     });
 
-    const particles = Array.from({ length: 55 }, () => {
+    const particles = Array.from({ length: 30 }, () => {
       const p = mk();
-      p.y = canvas.height * Math.random(); // stagger initial positions
+      p.y = Math.random() * canvas.height;
       return p;
     });
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const sp = hovRef.current ? 1.75 : 1;
 
       for (const p of particles) {
-        p.sin += 0.04 * sp;
-        p.x   += (p.vx + Math.sin(p.sin) * 1.4) * sp;
-        p.y   += p.vy * sp;
+        p.sin += 0.014;
+        p.x   += p.vx + Math.sin(p.sin) * 0.38;
+        p.y   += p.vy;
 
-        if (p.y < -20 || p.x < -50 || p.x > canvas.width + 50) {
+        if (p.y < -12 || p.x < -25 || p.x > canvas.width + 25) {
           Object.assign(p, mk()); continue;
         }
 
-        const t      = Math.max(0, 1 - p.y / canvas.height);
-        const normY  = p.y / canvas.height;
-        const alpha  = normY > 0.88 ? (1 - normY) / 0.12
-                     : normY < 0.10 ? normY / 0.10
-                     : 1;
-        const color  = flameColor(t);
-        const sz     = p.sz * (0.5 + 0.5 * (1 - t));
+        const normY = p.y / canvas.height;
+        const fade  = normY > 0.90 ? (1 - normY) / 0.10
+                    : normY < 0.07 ? normY / 0.07
+                    : 1;
+        const a = fade * p.base;
 
         ctx.save();
-        ctx.globalAlpha = alpha * 0.72;
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, sz * 4.5);
-        g.addColorStop(0, color);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
+        // Halo suave
+        ctx.globalAlpha = a * 0.35;
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.sz * 5);
+        g.addColorStop(0, 'rgba(0,212,255,1)');
+        g.addColorStop(1, 'rgba(0,212,255,0)');
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, sz * 4.5, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.sz * 5, 0, Math.PI * 2);
         ctx.fill();
-        ctx.globalAlpha = alpha;
-        ctx.fillStyle   = color;
+        // Núcleo
+        ctx.globalAlpha = a;
+        ctx.fillStyle   = '#00d4ff';
         ctx.beginPath();
-        ctx.arc(p.x, p.y, sz * 0.65, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.sz * 0.65, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
@@ -236,10 +125,10 @@ function FlameCanvas({ hovered }) {
   );
 }
 
-// ─── Slide overlays (shown on top of the permanent galaxy+flame) ──────────────
+// ─── Slide overlays ───────────────────────────────────────────────────────────
 function SlideNeural() {
   return (
-    <div className="absolute inset-0" style={{ background: 'rgba(5,3,20,0.55)' }}>
+    <div className="absolute inset-0" style={{ background: 'rgba(3,0,20,0.48)' }}>
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         {NN_L.map(([a, b], i) => (
           <line key={i}
@@ -260,7 +149,7 @@ function SlideNeural() {
 
 function SlideMatrix() {
   return (
-    <div className="absolute inset-0 overflow-hidden" style={{ background: 'rgba(0,0,7,0.75)' }}>
+    <div className="absolute inset-0 overflow-hidden" style={{ background: 'rgba(0,0,7,0.68)' }}>
       {MAT_COLS.map(col => (
         <span key={col.id}
           className="absolute top-0 font-mono text-green-400 whitespace-pre select-none pointer-events-none"
@@ -276,8 +165,7 @@ function SlideMatrix() {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function HeroSection({ onScrollToForm }) {
-  const [slide,   setSlide]   = useState(0);
-  const [hovered, setHovered] = useState(false);
+  const [slide, setSlide] = useState(0);
   const timerRef = useRef(null);
 
   const startTimer = useCallback(() => {
@@ -296,46 +184,40 @@ export default function HeroSection({ onScrollToForm }) {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden hero-glow"
       style={{ height: '100vh' }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
 
-      {/* ── CAPA 1: Galaxy (siempre visible) ── */}
-      <div className="absolute inset-0" style={{ zIndex: 1 }}>
-        <GalaxyBackground />
-      </div>
+      {/* ── CAPA 1: Imagen de fondo cinematográfica ── */}
+      <div className="absolute inset-0" style={{
+        zIndex: 1,
+        backgroundImage: "url('/hero-bg.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }} />
 
-      {/* ── Slide overlays sobre la galaxia (Neural / Matrix) ── */}
+      {/* ── CAPA 2: Gradient overlay — texto legible a la izquierda, imagen visible a la derecha ── */}
+      <div className="absolute inset-0" style={{
+        zIndex: 2,
+        background: 'linear-gradient(to right, rgba(3,0,20,0.85) 0%, rgba(3,0,20,0.4) 50%, rgba(3,0,20,0.1) 100%)',
+      }} />
+
+      {/* ── Slide overlays (Neural / Matrix) sobre la imagen ── */}
       <AnimatePresence mode="sync">
-        <motion.div key={slide} className="absolute inset-0" style={{ zIndex: 2 }}
+        <motion.div key={slide} className="absolute inset-0" style={{ zIndex: 3 }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
         >
           {slide === 1 && <SlideNeural />}
           {slide === 2 && <SlideMatrix />}
-          {/* slide 0: galaxia pura sin overlay adicional */}
+          {/* slide 0: imagen pura + gradiente */}
         </motion.div>
       </AnimatePresence>
 
-      {/* ── CAPA 2: Flame canvas (siempre visible) ── */}
-      <div className="absolute inset-0" style={{ zIndex: 3 }}>
-        <FlameCanvas hovered={hovered} />
-      </div>
-
-      {/* ── Dark overlay para legibilidad del texto ── */}
-      <div className="absolute inset-0"
-        style={{ background: 'rgba(0,0,0,0.45)', zIndex: 4 }}
-      />
-
-      {/* ── Slot de imagen (right side) ── */}
-      <div className="hero-person-image absolute bottom-0 right-0 hidden lg:block"
-        style={{ width: '40%', height: '85%', zIndex: 5, pointerEvents: 'none' }}
-      >
-        <div className="w-full h-full"
-          style={{ borderTop: '1px dashed rgba(0,212,255,0.08)', borderLeft: '1px dashed rgba(0,212,255,0.08)' }}
-        />
+      {/* ── CAPA 3: Partículas cyan sutiles (canvas) ── */}
+      <div className="absolute inset-0" style={{ zIndex: 4 }}>
+        <DustCanvas />
       </div>
 
       {/* ── Hero text content ── */}
