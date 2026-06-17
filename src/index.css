@@ -2,9 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Paleta nueva: Ciberseguridad futurista ─── */
+:root {
+  --bg-primary:    #0a0a1a;
+  --bg-secondary:  #0d1128;
+  --bg-card:       #111827;
+  --cyan:          #00d4ff;
+  --purple:        #b44fff;
+  --orange:        #ff6b35;
+  --text-primary:  #ffffff;
+  --text-secondary:#94a3b8;
+  --border-cyan:   rgba(0, 212, 255, 0.2);
+  --glow-cyan:     0 0 20px rgba(0, 212, 255, 0.4);
+  --glow-purple:   0 0 20px rgba(180, 79, 255, 0.4);
+}
+
 @layer base {
   body {
-    @apply bg-[#05030d] text-white selection:bg-purple-500/30;
+    @apply bg-[#0a0a1a] text-white selection:bg-cyan-500/30;
   }
 }
 
@@ -15,17 +30,17 @@
 
   .neon-text {
     text-shadow:
-      0 0 10px rgba(139, 92, 246, 0.7),
-      0 0 30px rgba(124, 58, 237, 0.4),
-      0 0 60px rgba(124, 58, 237, 0.2);
+      0 0 10px rgba(0, 212, 255, 0.7),
+      0 0 30px rgba(0, 212, 255, 0.4),
+      0 0 60px rgba(0, 212, 255, 0.2);
   }
 
   .neon-border {
-    @apply border-violet-500/50;
-    box-shadow: 0 0 20px rgba(124,58,237,0.25), inset 0 0 20px rgba(124,58,237,0.05);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.25), inset 0 0 20px rgba(0, 212, 255, 0.05);
   }
 
-  /* Texto neón verde del terminal */
+  /* Texto neón verde del terminal — se mantiene verde */
   .neon-green {
     color: #00ff88;
     text-shadow: 0 0 8px #00ff88, 0 0 24px rgba(0,255,136,0.4);
@@ -53,6 +68,30 @@
   /* Card con efecto flotante 3D */
   .card-float {
     animation: float-3d 7s ease-in-out infinite;
+  }
+
+  /* Botón primario con glow cyan/purple */
+  .btn-primary-glow {
+    background: linear-gradient(135deg, #00d4ff 0%, #b44fff 100%);
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.4);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .btn-primary-glow:hover {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.65), 0 0 20px rgba(180, 79, 255, 0.35);
+    transform: scale(1.03);
+  }
+
+  /* Botón secundario borde cyan */
+  .btn-secondary-cyan {
+    background: transparent;
+    border: 1.5px solid rgba(0, 212, 255, 0.45);
+    color: #00d4ff;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .btn-secondary-cyan:hover {
+    background: rgba(0, 212, 255, 0.08);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
+    transform: scale(1.03);
   }
 }
 
@@ -82,7 +121,7 @@
 /* Scrollbar terminal */
 .terminal-scroll::-webkit-scrollbar        { width: 3px; }
 .terminal-scroll::-webkit-scrollbar-track  { background: transparent; }
-.terminal-scroll::-webkit-scrollbar-thumb  { background: rgba(0,255,136,0.18); border-radius: 2px; }
+.terminal-scroll::-webkit-scrollbar-thumb  { background: rgba(0,212,255,0.18); border-radius: 2px; }
 
 /* Shimmer horizontal */
 @keyframes shimmer {
@@ -97,14 +136,14 @@
   66%       { transform: perspective(1200px) translateY(-3px) rotateX(-0.5deg) rotateY(0.5deg); }
 }
 
-/* Pulso de brillo para elementos activos */
+/* Pulso de brillo para elementos activos — cyan */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 15px rgba(124,58,237,0.5), 0 0 40px rgba(124,58,237,0.2); }
-  50%       { box-shadow: 0 0 30px rgba(139,92,246,0.8), 0 0 80px rgba(124,58,237,0.35); }
+  0%, 100% { box-shadow: 0 0 15px rgba(0,212,255,0.5), 0 0 40px rgba(0,212,255,0.2); }
+  50%       { box-shadow: 0 0 30px rgba(0,212,255,0.8), 0 0 80px rgba(180,79,255,0.35); }
 }
 .animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
 
-/* Barrido de línea de escaneo */
+/* Barrido de línea de escaneo — cyan */
 @keyframes scan-sweep {
   0%   { top: 0%;   opacity: 0.8; }
   90%  { top: 100%; opacity: 0.4; }
@@ -113,19 +152,19 @@
 .scan-line {
   position: absolute;
   left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, #8b5cf6, #06b6d4, transparent);
+  background: linear-gradient(90deg, transparent, #00d4ff, #b44fff, transparent);
   animation: scan-sweep 1.6s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Borde animado con gradiente para cards premium */
+/* Borde animado con gradiente para cards premium — cyan/purple */
 @keyframes border-spin {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 .gradient-border-anim {
-  background: linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4, #7c3aed);
+  background: linear-gradient(135deg, #00d4ff, #b44fff, #00d4ff, #b44fff);
   background-size: 300% 300%;
   animation: border-spin 4s ease infinite;
 }

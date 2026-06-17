@@ -374,13 +374,13 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                     onClick={() => setSelectedType(sel ? null : id)}
                     className="relative flex flex-col items-start p-3 rounded-xl text-left transition-all duration-200"
                     style={{
-                      background: sel ? 'rgba(109,40,217,0.12)' : 'rgba(255,255,255,0.02)',
-                      border:     sel ? '1px solid rgba(139,92,246,0.5)' : '1px solid rgba(255,255,255,0.06)',
-                      boxShadow:  sel ? '0 0 20px rgba(124,58,237,0.15), inset 0 0 15px rgba(124,58,237,0.05)' : 'none',
+                      background: sel ? 'rgba(0,212,255,0.08)' : 'rgba(255,255,255,0.02)',
+                      border:     sel ? '1px solid rgba(0,212,255,0.5)' : '1px solid rgba(255,255,255,0.06)',
+                      boxShadow:  sel ? '0 0 20px rgba(0,212,255,0.15), inset 0 0 15px rgba(0,212,255,0.05)' : 'none',
                     }}
                   >
                     <Icon className="w-4 h-4 mb-1.5" strokeWidth={1.8}
-                      style={{ color: sel ? '#a78bfa' : '#64748b' }} />
+                      style={{ color: sel ? '#00d4ff' : '#64748b' }} />
                     <span className="text-[11px] font-bold block leading-tight mb-0.5"
                       style={{ color: sel ? '#fff' : '#cbd5e1' }}>
                       {title}
@@ -390,7 +390,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                     </span>
                     {sel && (
                       <div className="absolute top-2 right-2 w-4 h-4 rounded-full flex items-center justify-center"
-                        style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 0 8px rgba(124,58,237,0.6)' }}
+                        style={{ background: 'linear-gradient(135deg, #00d4ff, #b44fff)', boxShadow: '0 0 8px rgba(0,212,255,0.6)' }}
                       >
                         <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
                       </div>
@@ -504,9 +504,11 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
               <button type="submit"
                 className="btn-shimmer w-full font-black py-3.5 rounded-xl text-white transition-all active:scale-[0.97]"
                 style={{
-                  background: 'linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #7c3aed 100%)',
-                  boxShadow: '0 0 25px rgba(124,58,237,0.55), 0 8px 32px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                  background: 'linear-gradient(135deg, #00d4ff 0%, #b44fff 100%)',
+                  boxShadow: '0 0 25px rgba(0,212,255,0.5), 0 8px 32px rgba(180,79,255,0.25), inset 0 1px 0 rgba(255,255,255,0.15)',
                 }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 40px rgba(0,212,255,0.7), 0 8px 32px rgba(180,79,255,0.4), inset 0 1px 0 rgba(255,255,255,0.2)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 25px rgba(0,212,255,0.5), 0 8px 32px rgba(180,79,255,0.25), inset 0 1px 0 rgba(255,255,255,0.15)'; }}
               >
                 Analizar vulnerabilidad →
               </button>
@@ -616,7 +618,9 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                   <motion.button initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }} onClick={irPaso3}
                     className="btn-shimmer w-full font-black py-3.5 rounded-xl text-white transition-all active:scale-[0.97] mt-1"
-                    style={{ background: 'linear-gradient(135deg, #7c3aed, #9333ea, #7c3aed)', boxShadow: '0 0 25px rgba(124,58,237,0.55), 0 8px 32px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+                    style={{ background: 'linear-gradient(135deg, #00d4ff, #b44fff)', boxShadow: '0 0 25px rgba(0,212,255,0.5), 0 8px 32px rgba(180,79,255,0.25), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 40px rgba(0,212,255,0.7), 0 8px 32px rgba(180,79,255,0.4)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 25px rgba(0,212,255,0.5), 0 8px 32px rgba(180,79,255,0.25)'; }}
                   >
                     Quiero protegerme ahora →
                   </motion.button>
@@ -643,10 +647,10 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
             {/* Plan summary */}
             <div
               className="rounded-xl px-4 py-3 flex items-center justify-between"
-              style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.22)' }}
+              style={{ background: 'rgba(0,212,255,0.06)', border: '1px solid rgba(0,212,255,0.2)' }}
             >
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: 'rgba(167,139,250,0.7)' }}>
+                <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: 'rgba(0,212,255,0.7)' }}>
                   Plan seleccionado
                 </p>
                 <p className="text-sm font-bold text-white leading-tight">
@@ -660,7 +664,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 type="button"
                 onClick={() => document.getElementById('planes')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 className="text-[11px] font-semibold transition-colors flex-shrink-0 ml-4"
-                style={{ color: '#a78bfa' }}
+                style={{ color: '#00d4ff' }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#c4b5fd'; }}
                 onMouseLeave={e => { e.currentTarget.style.color = '#a78bfa'; }}
               >
@@ -758,7 +762,9 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
             {/* Botón — abre modal Culqi */}
             <button type="submit" disabled={loading}
               className="btn-shimmer w-full font-black py-4 rounded-xl text-white transition-all active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              style={{ background: 'linear-gradient(135deg,#7c3aed 0%,#9333ea 50%,#7c3aed 100%)', boxShadow: '0 0 30px rgba(124,58,237,0.55),0 8px 40px rgba(124,58,237,0.25),inset 0 1px 0 rgba(255,255,255,0.18)' }}
+              style={{ background: 'linear-gradient(135deg,#00d4ff 0%,#b44fff 100%)', boxShadow: '0 0 30px rgba(0,212,255,0.5),0 8px 40px rgba(180,79,255,0.25),inset 0 1px 0 rgba(255,255,255,0.18)' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 50px rgba(0,212,255,0.7),0 8px 40px rgba(180,79,255,0.4),inset 0 1px 0 rgba(255,255,255,0.2)'; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 30px rgba(0,212,255,0.5),0 8px 40px rgba(180,79,255,0.25),inset 0 1px 0 rgba(255,255,255,0.18)'; }}
             >
               {loading
                 ? <><Spinner /> Procesando…</>
@@ -792,9 +798,9 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.1 }}
-                style={{ filter: 'drop-shadow(0 0 18px rgba(124,58,237,0.9))' }}
+                style={{ filter: 'drop-shadow(0 0 18px rgba(0,212,255,0.7)) drop-shadow(0 0 8px rgba(180,79,255,0.5))' }}
               >
-                <Shield className="w-11 h-11" style={{ color: '#a78bfa' }} />
+                <Shield className="w-11 h-11" style={{ color: '#00d4ff' }} />
               </motion.div>
 
               <div className="w-full h-1.5 rounded-full overflow-hidden"
@@ -838,7 +844,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
                 {[
                   { text: '> Retomando protocolo Encriptas...',                color: '#475569', delay: 0.6  },
                   { text: '> [####################] 100% Cifrado completado', color: '#00ff88', delay: 0.75 },
-                  { text: `> Clave maestra generada: ${activationKey}`,        color: '#a78bfa', delay: 0.9  },
+                  { text: `> Clave maestra generada: ${activationKey}`,        color: '#00d4ff', delay: 0.9  },
                   { text: `> Titular verificado:`,  color: '#475569', delay: 1.05, bold: `${nombre} ${apellido}`.trim() || 'N/A', boldColor: '#ffffff' },
                   { text: `> Email del titular:`,   color: '#475569', delay: 1.15, bold: email, boldColor: '#e2e8f0' },
                   { text: `> Dato protegido:`,      color: '#475569', delay: 1.25, bold: datoProtegido, boldColor: '#a78bfa' },
@@ -865,7 +871,7 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
               style={{ background: 'rgba(0,255,136,0.03)', border: '1px solid rgba(0,255,136,0.1)' }}
             >
               <div className="flex items-center gap-2">
-                {TipoIcon && <TipoIcon className="w-4 h-4 shrink-0" style={{ color: '#a78bfa' }} />}
+                {TipoIcon && <TipoIcon className="w-4 h-4 shrink-0" style={{ color: '#00d4ff' }} />}
                 <div>
                   <p className="text-[9px] uppercase tracking-wider text-slate-600">Tipo de protección</p>
                   <p className="text-xs font-bold text-white">{tipoCard?.title || selectedType}</p>
@@ -915,12 +921,12 @@ export default function SubscriptionForm({ onSubscriptionSuccess, onStep1Submit,
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2.1 }}
               className="rounded-xl px-4 py-4 text-center"
-              style={{ background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(139,92,246,0.15)' }}
+              style={{ background: 'rgba(0,212,255,0.04)', border: '1px solid rgba(0,212,255,0.15)' }}
             >
               <p className="text-[11px] leading-relaxed text-slate-300">
                 Sus cuentas vinculadas con{' '}
                 <span style={{ color: '#e2e8f0', fontWeight: 700 }}>{email}</span>
-                {telPago && (<>, su número{' '}<span style={{ color: '#a78bfa', fontWeight: 700 }}>{codPago} {telPago}</span></>)}
+                {telPago && (<>, su número{' '}<span style={{ color: '#00d4ff', fontWeight: 700 }}>{codPago} {telPago}</span></>)}
                 , sus billeteras digitales y apps bancarias móviles están{' '}
                 <span style={{ color: '#00ff88', fontWeight: 700 }}>completamente seguras</span>{' '}
                 y protegidas por Encriptas.
@@ -959,8 +965,8 @@ function StepIndicador({ paso }) {
             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-black"
             style={
-              paso === n ? { background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 0 16px rgba(124,58,237,0.7)', color: '#fff' }
-              : paso > n  ? { background: 'rgba(124,58,237,0.2)', color: '#a78bfa', border: '1px solid rgba(124,58,237,0.3)' }
+              paso === n ? { background: 'linear-gradient(135deg, #00d4ff, #b44fff)', boxShadow: '0 0 16px rgba(0,212,255,0.6)', color: '#fff' }
+              : paso > n  ? { background: 'rgba(0,212,255,0.12)', color: '#00d4ff', border: '1px solid rgba(0,212,255,0.3)' }
               :               { background: 'rgba(255,255,255,0.04)', color: '#475569', border: '1px solid rgba(255,255,255,0.06)' }
             }
           >
@@ -968,7 +974,7 @@ function StepIndicador({ paso }) {
           </motion.div>
           {n < 3 && (
             <div className="h-px w-10 rounded-full transition-all duration-500"
-              style={{ background: paso > n ? 'linear-gradient(90deg, rgba(124,58,237,0.7), rgba(168,85,247,0.4))' : 'rgba(255,255,255,0.06)', boxShadow: paso > n ? '0 0 6px rgba(124,58,237,0.4)' : 'none' }}
+              style={{ background: paso > n ? 'linear-gradient(90deg, rgba(0,212,255,0.7), rgba(180,79,255,0.4))' : 'rgba(255,255,255,0.06)', boxShadow: paso > n ? '0 0 6px rgba(0,212,255,0.4)' : 'none' }}
             />
           )}
         </React.Fragment>
@@ -988,7 +994,7 @@ function TabToggle({ options, selected, onChange, size = 'md' }) {
             style={sel ? {
               background: 'linear-gradient(135deg, #7c3aed, #9333ea)',
               color: '#fff',
-              boxShadow: '0 0 10px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.12)',
+              boxShadow: '0 0 10px rgba(0,212,255,0.35), inset 0 1px 0 rgba(255,255,255,0.12)',
             } : {
               background: 'rgba(255,255,255,0.04)', color: '#64748b',
               border: '1px solid rgba(255,255,255,0.06)',
@@ -1007,7 +1013,7 @@ function NvInput({ type = 'text', placeholder, value, onChange, label, required,
     <div className={`w-full ${className}`}>
       {label && (
         <label className="block text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5 ml-1"
-          style={{ color: 'rgba(167,139,250,0.6)' }}>
+          style={{ color: 'rgba(0,212,255,0.6)' }}>
           {label}
         </label>
       )}
@@ -1017,7 +1023,7 @@ function NvInput({ type = 'text', placeholder, value, onChange, label, required,
         style={{
           background: 'rgba(8,6,20,0.9)',
           border: '1px solid rgba(139,92,246,0.2)',
-          boxShadow: value ? '0 0 0 2px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.04)' : 'inset 0 1px 0 rgba(255,255,255,0.03)',
+          boxShadow: value ? '0 0 0 2px rgba(0,212,255,0.25), inset 0 1px 0 rgba(255,255,255,0.04)' : 'inset 0 1px 0 rgba(255,255,255,0.03)',
         }}
       />
     </div>
@@ -1048,7 +1054,7 @@ function SectionTitle({ children }) {
   return (
     <div className="flex items-center gap-3 mb-1">
       <span className="text-[10px] font-black uppercase tracking-[0.2em]"
-        style={{ color: 'rgba(167,139,250,0.7)' }}>
+        style={{ color: 'rgba(0,212,255,0.7)' }}>
         {children}
       </span>
       <div className="flex-1 h-px" style={{ background: 'rgba(139,92,246,0.15)' }} />
@@ -1087,8 +1093,8 @@ function BInput({ type = 'text', placeholder, value, onChange, readOnly = false,
       style={{
         height: '46px',
         background: '#0d0b1e',
-        border: `1px solid ${focused ? '#7c3aed' : '#3a3a5c'}`,
-        boxShadow: focused ? '0 0 0 3px rgba(124,58,237,0.18)' : 'none',
+        border: `1px solid ${focused ? '#00d4ff' : '#3a3a5c'}`,
+        boxShadow: focused ? '0 0 0 3px rgba(0,212,255,0.18)' : 'none',
       }}
     />
   );
@@ -1106,8 +1112,8 @@ function BSelect({ value, onChange, children }) {
       style={{
         height: '46px',
         background: '#0d0b1e',
-        border: `1px solid ${focused ? '#7c3aed' : '#3a3a5c'}`,
-        boxShadow: focused ? '0 0 0 3px rgba(124,58,237,0.18)' : 'none',
+        border: `1px solid ${focused ? '#00d4ff' : '#3a3a5c'}`,
+        boxShadow: focused ? '0 0 0 3px rgba(0,212,255,0.18)' : 'none',
       }}
     >
       {children}

@@ -47,9 +47,13 @@ function loadRecords() {
 const FeatureCard = ({ title, description, icon }) => (
   <motion.div
     whileHover={{ y: -5 }}
-    className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-all group"
+    className="p-8 rounded-3xl transition-all group"
+    style={{ background: '#111827', border: '1px solid rgba(0,212,255,0.15)', boxShadow: '0 0 0 rgba(0,212,255,0)' }}
+    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.45)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(0,212,255,0.12)'; }}
+    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.15)'; e.currentTarget.style.boxShadow = '0 0 0 rgba(0,212,255,0)'; }}
   >
-    <div className="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+    <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all"
+      style={{ background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.2)', color: '#00d4ff' }}>
       {icon}
     </div>
     <h3 className="text-xl font-bold mb-4">{title}</h3>
@@ -117,10 +121,10 @@ function App() {
 
   return (
     <ErrorBoundary>
-    <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-indigo-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a1a] text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden">
 
       {/* ─── Navbar ─────────────────────────────────────────────────── */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-slate-950/50 backdrop-blur-md">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-md" style={{ background: 'rgba(10,10,26,0.92)', borderBottom: '1px solid rgba(0,212,255,0.15)' }}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
           <button onClick={goHome} className="flex items-center space-x-3 focus:outline-none">
@@ -151,7 +155,10 @@ function App() {
             <a
               href="#formulario-principal"
               onClick={scrollFormulario}
-              className="px-5 py-2.5 rounded-full bg-white text-slate-950 hover:bg-slate-200 transition-all font-semibold"
+              className="px-5 py-2.5 rounded-full font-semibold transition-all"
+              style={{ background: 'linear-gradient(135deg,#00d4ff 0%,#b44fff 100%)', color: '#fff', boxShadow: '0 0 18px rgba(0,212,255,0.35)' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 30px rgba(0,212,255,0.6), 0 0 16px rgba(180,79,255,0.35)'; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 18px rgba(0,212,255,0.35)'; }}
             >
               Suscribirse
             </a>
@@ -212,9 +219,9 @@ function App() {
                     >
                       <div
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
-                        style={{ background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(139,92,246,0.22)', color: '#a78bfa' }}
+                        style={{ background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.25)', color: '#00d4ff' }}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse inline-block" />
+                        <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: '#00d4ff' }} />
                         Protección en minutos
                       </div>
                       <h2 className="text-4xl font-bold text-white mb-3">Activa tu escudo ahora</h2>
@@ -233,14 +240,14 @@ function App() {
                       <div
                         className="relative rounded-3xl p-6 shadow-2xl overflow-hidden"
                         style={{
-                          background: 'linear-gradient(145deg,#0d0618 0%,#090412 60%,#0d0a1e 100%)',
-                          boxShadow: '0 0 60px rgba(124,58,237,0.15),inset 0 1px 0 rgba(255,255,255,0.06)',
+                          background: 'linear-gradient(145deg,#0d1128 0%,#0a0a1a 60%,#111827 100%)',
+                          boxShadow: '0 0 60px rgba(0,212,255,0.1),inset 0 1px 0 rgba(255,255,255,0.06)',
                         }}
                       >
                         <div className="absolute inset-0 pointer-events-none"
-                          style={{ background: 'radial-gradient(ellipse at 70% 0%,rgba(139,92,246,0.12) 0%,transparent 60%)' }} />
+                          style={{ background: 'radial-gradient(ellipse at 70% 0%,rgba(0,212,255,0.1) 0%,transparent 60%)' }} />
                         <div className="absolute inset-0 pointer-events-none"
-                          style={{ background: 'radial-gradient(ellipse at 20% 100%,rgba(6,182,212,0.06) 0%,transparent 50%)' }} />
+                          style={{ background: 'radial-gradient(ellipse at 20% 100%,rgba(180,79,255,0.07) 0%,transparent 50%)' }} />
                         <SubscriptionForm
                           key={formKey}
                           onSubscriptionSuccess={handleSubscriptionSuccess}
@@ -299,7 +306,7 @@ function App() {
                   </section>
 
                   {/* ─── Quiénes Somos ────────────────────────────── */}
-                  <section id="about" className="py-20 bg-indigo-600/5 rounded-[4rem] px-8 md:px-12 border border-indigo-500/10">
+                  <section id="about" className="py-20 rounded-[4rem] px-8 md:px-12" style={{ background: 'rgba(0,212,255,0.03)', border: '1px solid rgba(0,212,255,0.1)' }}>
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                       <div>
                         <h2 className="text-4xl font-bold mb-8">¿Quiénes Somos?</h2>
@@ -308,7 +315,7 @@ function App() {
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-4">
-                            <div className="w-6 h-6 rounded-full bg-indigo-500 flex-shrink-0 mt-1" />
+                            <div className="w-6 h-6 rounded-full flex-shrink-0 mt-1" style={{ background: 'linear-gradient(135deg,#00d4ff,#b44fff)' }} />
                             <div>
                               <h4 className="font-bold mb-1">Nuestra Misión AI</h4>
                               <p className="text-slate-400">
@@ -368,11 +375,11 @@ function App() {
 
       {/* Blobs de fondo */}
       <div className="fixed top-0 left-1/4 w-[600px] h-[600px] rounded-full -z-10 animate-pulse-slow"
-        style={{ background: 'radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%)', filter: 'blur(80px)' }} />
+        style={{ background: 'radial-gradient(circle,rgba(0,212,255,0.12) 0%,transparent 70%)', filter: 'blur(80px)' }} />
       <div className="fixed bottom-0 right-1/4 w-[600px] h-[600px] rounded-full -z-10 animate-pulse-slow"
-        style={{ background: 'radial-gradient(circle,rgba(168,85,247,0.15) 0%,transparent 70%)', filter: 'blur(80px)', animationDelay: '2s' }} />
+        style={{ background: 'radial-gradient(circle,rgba(180,79,255,0.12) 0%,transparent 70%)', filter: 'blur(80px)', animationDelay: '2s' }} />
       <div className="fixed top-1/2 left-0 w-[400px] h-[400px] rounded-full -z-10 animate-pulse-slow"
-        style={{ background: 'radial-gradient(circle,rgba(6,182,212,0.07) 0%,transparent 70%)', filter: 'blur(100px)', animationDelay: '4s' }} />
+        style={{ background: 'radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%)', filter: 'blur(100px)', animationDelay: '4s' }} />
     </div>
     </ErrorBoundary>
   );
@@ -426,13 +433,13 @@ function ParaDropdown({ onGoHome }) {
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl overflow-hidden"
             style={{
-              background: '#1a1a2e',
-              border:     '1px solid rgba(139,92,246,0.25)',
-              boxShadow:  '0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(124,58,237,0.1)',
+              background: '#0d1128',
+              border:     '1px solid rgba(0,212,255,0.2)',
+              boxShadow:  '0 20px 60px rgba(0,0,0,0.7), 0 0 30px rgba(0,212,255,0.08)',
             }}
           >
             <div className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45"
-              style={{ background: '#1a1a2e', borderTop: '1px solid rgba(139,92,246,0.25)', borderLeft: '1px solid rgba(139,92,246,0.25)' }} />
+              style={{ background: '#0d1128', borderTop: '1px solid rgba(0,212,255,0.2)', borderLeft: '1px solid rgba(0,212,255,0.2)' }} />
             <div className="p-1.5">
               {PARA_ITEMS.map(({ Icon, label, desc, href }) => (
                 <button
@@ -440,12 +447,12 @@ function ParaDropdown({ onGoHome }) {
                   onClick={() => handleSelect(href)}
                   className="w-full flex items-start gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-150"
                   style={{ background: 'transparent' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(139,92,246,0.12)'; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,255,0.08)'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
                 >
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.2)' }}>
-                    <Icon className="w-3.5 h-3.5 text-violet-400" />
+                    style={{ background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.2)' }}>
+                    <Icon className="w-3.5 h-3.5" style={{ color: '#00d4ff' }} />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-white leading-tight">{label}</p>

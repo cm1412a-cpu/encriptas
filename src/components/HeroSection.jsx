@@ -46,7 +46,7 @@ function SlideParticles() {
   return (
     <div
       className="absolute inset-0"
-      style={{ background: 'radial-gradient(ellipse at 40% 40%, #0d0520 0%, #05030d 70%)' }}
+      style={{ background: 'radial-gradient(ellipse at 40% 40%, #0d1128 0%, #0a0a1a 70%)' }}
     >
       {PARTS.map(p => (
         <span
@@ -68,7 +68,7 @@ function SlideNeural() {
   return (
     <div
       className="absolute inset-0"
-      style={{ background: 'linear-gradient(135deg, #0d0120 0%, #1a0535 50%, #0f0a2e 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1128 50%, #0a1020 100%)' }}
     >
       <svg
         className="absolute inset-0 w-full h-full"
@@ -80,7 +80,7 @@ function SlideNeural() {
             key={i}
             x1={NN_N[a].x} y1={NN_N[a].y}
             x2={NN_N[b].x} y2={NN_N[b].y}
-            stroke="rgba(139,92,246,0.3)"
+            stroke="rgba(0,212,255,0.3)"
             strokeWidth="0.3"
             style={{
               animation: `nn-fade ${(2.5 + (i * 0.4) % 2).toFixed(1)}s ease-in-out ${((i * 0.3) % 2).toFixed(1)}s infinite alternate`,
@@ -91,7 +91,7 @@ function SlideNeural() {
           <circle
             key={id}
             cx={x} cy={y} r="0.85"
-            fill="rgba(167,139,250,0.75)"
+            fill="rgba(0,212,255,0.75)"
             style={{
               animation: `nn-node-pulse ${(2 + (id * 0.5) % 2).toFixed(1)}s ease-in-out ${((id * 0.35) % 2).toFixed(1)}s infinite alternate`,
             }}
@@ -205,13 +205,13 @@ export default function HeroSection({ onScrollToForm }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-8"
               style={{
-                background: 'rgba(124,58,237,0.18)',
-                border: '1px solid rgba(139,92,246,0.4)',
-                color: '#c4b5fd',
+                background: 'rgba(0,212,255,0.1)',
+                border: '1px solid rgba(0,212,255,0.4)',
+                color: '#00d4ff',
                 backdropFilter: 'blur(10px)',
               }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: '#00d4ff' }} />
               Cifrado de Nueva Generación
             </motion.div>
 
@@ -235,7 +235,7 @@ export default function HeroSection({ onScrollToForm }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="font-light italic mb-5"
-              style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#a78bfa' }}
+              style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#00d4ff' }}
             >
               Invisible para todos, menos para ti.
             </motion.p>
@@ -262,17 +262,17 @@ export default function HeroSection({ onScrollToForm }) {
                 onClick={onScrollToForm}
                 className="px-8 py-4 rounded-2xl font-black text-base active:scale-[0.97]"
                 style={{
-                  background: 'linear-gradient(135deg,#7c3aed 0%,#9333ea 100%)',
+                  background: 'linear-gradient(135deg,#00d4ff 0%,#b44fff 100%)',
                   color: '#fff',
-                  boxShadow: '0 0 32px rgba(124,58,237,0.55), inset 0 1px 0 rgba(255,255,255,0.15)',
+                  boxShadow: '0 0 32px rgba(0,212,255,0.5), inset 0 1px 0 rgba(255,255,255,0.15)',
                   transition: 'box-shadow 0.2s, transform 0.2s',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = '0 0 50px rgba(124,58,237,0.8), inset 0 1px 0 rgba(255,255,255,0.2)';
+                  e.currentTarget.style.boxShadow = '0 0 50px rgba(0,212,255,0.75), 0 0 20px rgba(180,79,255,0.4), inset 0 1px 0 rgba(255,255,255,0.2)';
                   e.currentTarget.style.transform = 'scale(1.04)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.boxShadow = '0 0 32px rgba(124,58,237,0.55), inset 0 1px 0 rgba(255,255,255,0.15)';
+                  e.currentTarget.style.boxShadow = '0 0 32px rgba(0,212,255,0.5), inset 0 1px 0 rgba(255,255,255,0.15)';
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
@@ -283,20 +283,20 @@ export default function HeroSection({ onScrollToForm }) {
                 onClick={() => document.getElementById('planes')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 className="px-8 py-4 rounded-2xl font-black text-base active:scale-[0.97]"
                 style={{
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1.5px solid rgba(255,255,255,0.28)',
-                  color: '#fff',
+                  background: 'rgba(0,212,255,0.06)',
+                  border: '1.5px solid rgba(0,212,255,0.45)',
+                  color: '#00d4ff',
                   backdropFilter: 'blur(10px)',
-                  transition: 'background 0.2s, border-color 0.2s, transform 0.2s',
+                  transition: 'background 0.2s, box-shadow 0.2s, transform 0.2s',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.14)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
+                  e.currentTarget.style.background = 'rgba(0,212,255,0.12)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(0,212,255,0.3)';
                   e.currentTarget.style.transform = 'scale(1.04)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.07)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)';
+                  e.currentTarget.style.background = 'rgba(0,212,255,0.06)';
+                  e.currentTarget.style.boxShadow = 'none';
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
@@ -316,8 +316,8 @@ export default function HeroSection({ onScrollToForm }) {
           background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.15)',
           color: '#fff', zIndex: 20, transition: 'background 0.2s',
         }}
-        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.35)'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.4)'; }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,255,0.2)'; e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
         aria-label="Slide anterior"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -331,8 +331,8 @@ export default function HeroSection({ onScrollToForm }) {
           background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.15)',
           color: '#fff', zIndex: 20, transition: 'background 0.2s',
         }}
-        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.35)'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.4)'; }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,255,0.2)'; e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
         aria-label="Slide siguiente"
       >
         <ChevronRight className="w-5 h-5" />
