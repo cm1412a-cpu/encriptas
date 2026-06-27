@@ -7,6 +7,7 @@ import AnalysisTerminal from './components/AnalysisTerminal';
 import ClientCarousel from './components/ClientCarousel';
 import VerifyProtection from './components/VerifyProtection';
 import PricingPlans from './components/PricingPlans';
+import ServicesSection from './components/ServicesSection';
 import MarketersSection from './components/MarketersSection';
 import EmpresasSection from './components/EmpresasSection';
 import InfluencersSection from './components/InfluencersSection';
@@ -134,6 +135,7 @@ function App() {
 
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
             <a href="#features"  onClick={goHome} className="hover:text-white transition-colors">Tecnología</a>
+            <a href="#servicios" onClick={goHome} className="hover:text-white transition-colors">Servicios</a>
             <a href="#about"     onClick={goHome} className="hover:text-white transition-colors">Quienes Somos</a>
             <ParaDropdown onGoHome={goHome} />
             <a href="#planes"    onClick={goHome} className="hover:text-white transition-colors">Planes</a>
@@ -337,6 +339,9 @@ function App() {
                       </div>
                     </div>
                   </section>
+
+                  {/* ─── Servicios ────────────────────────────────── */}
+                  <ServicesSection onScrollToForm={scrollFormulario} />
 
                   {/* ─── Marketeros ───────────────────────────────── */}
                   <MarketersSection onScrollToForm={scrollFormulario} />

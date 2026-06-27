@@ -185,22 +185,22 @@ export default function HeroSection({ onScrollToForm }) {
   return (
     <section
       className="relative overflow-hidden hero-glow"
-      style={{ height: '100vh' }}
+      style={{ minHeight: '100vh' }}
     >
 
       {/* ── CAPA 1: Imagen de fondo cinematográfica ── */}
       <div className="absolute inset-0" style={{
         zIndex: 1,
-        backgroundImage: "url('/hero-bg.webp')",
+        backgroundImage: "url('/hero-bg.png')",
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat',
       }} />
 
       {/* ── CAPA 2: Gradient overlay — texto legible a la izquierda, imagen visible a la derecha ── */}
       <div className="absolute inset-0" style={{
         zIndex: 2,
-        background: 'linear-gradient(to right, rgba(3,0,20,0.85) 0%, rgba(3,0,20,0.4) 50%, rgba(3,0,20,0.1) 100%)',
+        background: 'linear-gradient(to right, rgba(3,0,20,0.92) 0%, rgba(3,0,20,0.6) 55%, rgba(3,0,20,0.1) 100%)',
       }} />
 
       {/* ── Slide overlays (Neural / Matrix) sobre la imagen ── */}

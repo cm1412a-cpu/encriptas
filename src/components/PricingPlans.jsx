@@ -9,7 +9,9 @@ export const PLANS = [
     id:       'basico',
     badge:    'PLAN MENSUAL',
     BadgeIcon: Zap,
+    icon:     '🛡️',
     name:     'Básico',
+    desc:     'Protección esencial para 1 cuenta y 1 dispositivo',
     price:    '$10',
     period:   '/ mes',
     savings:  null,
@@ -34,7 +36,9 @@ export const PLANS = [
     id:       'pro',
     badge:    'MÁS POPULAR',
     BadgeIcon: Star,
+    icon:     '⚡',
     name:     'Pro',
+    desc:     'Cobertura avanzada para hasta 5 cuentas simultáneas',
     price:    '$45',
     period:   '/ 6 meses',
     savings:  'Equivale a $7.50/mes — ahorras $15',
@@ -60,7 +64,9 @@ export const PLANS = [
     id:       'elite',
     badge:    'PLAN ANUAL',
     BadgeIcon: Shield,
+    icon:     '👑',
     name:     'Elite',
+    desc:     'Protección total ilimitada para empresas y profesionales',
     price:    '$90',
     period:   '/ año',
     savings:  'Equivale a $7.50/mes — ahorras $30',
@@ -133,15 +139,15 @@ function PlanCard({ plan, index, onSelectPlan }) {
       transition={{ duration: 0.45, delay: index * 0.1 }}
       className="relative flex flex-col rounded-3xl overflow-hidden"
       style={plan.highlight ? {
-        background: 'linear-gradient(160deg,#12102a 0%,#0d1128 100%)',
-        border: '1.5px solid rgba(180,79,255,0.55)',
-        boxShadow: '0 0 40px rgba(180,79,255,0.2), inset 0 1px 0 rgba(255,255,255,0.06)',
+        background: '#0d1128',
+        border: '2px solid #b44fff',
+        boxShadow: '0 0 20px rgba(180,79,255,0.3)',
       } : {
-        background: '#111827',
-        border: '1px solid rgba(0,212,255,0.15)',
+        background: '#0d1128',
+        border: '1px solid rgba(0,212,255,0.3)',
       }}
-      onMouseEnter={!plan.highlight ? e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.4)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(0,212,255,0.1)'; } : undefined}
-      onMouseLeave={!plan.highlight ? e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.15)'; e.currentTarget.style.boxShadow = 'none'; } : undefined}
+      onMouseEnter={!plan.highlight ? e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.5)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(0,212,255,0.1)'; } : undefined}
+      onMouseLeave={!plan.highlight ? e => { e.currentTarget.style.borderColor = 'rgba(0,212,255,0.3)'; e.currentTarget.style.boxShadow = 'none'; } : undefined}
     >
       {/* Glow top para el plan destacado */}
       {plan.highlight && (
@@ -150,6 +156,9 @@ function PlanCard({ plan, index, onSelectPlan }) {
       )}
 
       <div className="p-7 flex flex-col flex-1">
+
+        {/* Ícono del plan */}
+        <div className="mb-4" style={{ fontSize: '48px', lineHeight: 1 }}>{plan.icon}</div>
 
         {/* Badge */}
         <div className="flex items-center gap-2 mb-5">
@@ -170,11 +179,12 @@ function PlanCard({ plan, index, onSelectPlan }) {
           </span>
         </div>
 
-        {/* Nombre + precio */}
+        {/* Nombre + descripción + precio */}
         <h3 className="text-2xl font-black text-white mb-1">{plan.name}</h3>
+        <p className="text-[13px] text-slate-400 leading-snug mb-3">{plan.desc}</p>
         <div className="flex items-end gap-1.5 mb-1">
-          <span className="text-4xl font-black"
-            style={{ color: plan.highlight ? '#b44fff' : '#e2e8f0' }}>
+          <span className="font-black"
+            style={{ fontSize: '3rem', lineHeight: 1, color: plan.highlight ? '#b44fff' : '#e2e8f0' }}>
             {plan.price}
           </span>
           <span className="text-slate-500 text-sm mb-1.5">{plan.period}</span>
